@@ -1,3 +1,4 @@
+//! Zig RGFW: Idiomatic Zig Bindings for RGFW.
 
 const rgfw = @import("rgfw.zig");
 const window_management = @import("window_management.zig");
