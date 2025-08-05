@@ -4,5 +4,6 @@
 
 pub const BuildConfig = @import("BuildConfig.zig");
 pub const ExampleExe = @import("ExampleExe.zig");
+pub const RgfwLib = @import("RgfwLib.zig");
 pub const TestsExe = @import("TestsExe.zig");
 pub const ZigRgfwModule = @import("ZigRgfwModule.zig");

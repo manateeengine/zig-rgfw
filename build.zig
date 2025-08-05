@@ -5,8 +5,12 @@ pub fn build(b: *std.Build) !void {
     // Build Setup
     const build_config = build_module.BuildConfig.init(b);
 
+    // Static Library Setup
+    const rgfw_lib = build_module.RgfwLib.init(b, &build_config);
+
     // Module Setup
     const zig_rgfw_module = build_module.ZigRgfwModule.init(b, &build_config);
+    rgfw_lib.linkToModule(&zig_rgfw_module);
 
     // Examples Setup
     const basic_example_exe = build_module.ExampleExe.init(b, &build_config, &zig_rgfw_module, "basic");
