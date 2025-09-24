@@ -1,22 +1,31 @@
 //! @brief Zig RGFW: Idiomatic Zig Bindings for RGFW.
 
+const clipboard = @import("clipboard.zig");
+const handling = @import("handling.zig");
 const input = @import("input.zig");
 const monitor = @import("monitor.zig");
 const rgfw = @import("rgfw.zig");
 const window_management = @import("window_management.zig");
 
-pub const rgfwIsClicked = input.rgfwIsClicked;
-pub const rgfwIsHeld = input.rgfwIsHeld;
-pub const rgfwIsMouseHeld = input.rgfwIsMouseHeld;
+pub const rgfwReadClipboard = clipboard.rgfwReadClipboard;
+pub const rgfwReadClipboardPtr = clipboard.rgfwReadClipboardPtr;
+pub const rgfwWriteClipboard = clipboard.rgfwWriteClipboard;
+
+pub const RgfwDebugFunc = handling.RgfwDebugFunc;
+pub const RgfwDebugType = handling.RgfwDebugType;
+pub const RgfwErrorCode = handling.RgfwErrorCode;
+pub const rgfwSendDebugInfo = handling.rgfwSendDebugInfo;
+pub const rgfwSetDebugCallback = handling.rgfwSetDebugCallback;
+
+pub const rgfwGetMouseScroll = input.rgfwGetMouseScroll;
+pub const rgfwGetMouseVector = input.rgfwGetMouseVector;
+pub const rgfwIsKeyDown = input.rgfwIsKeyDown;
+pub const rgfwIsKeyPressed = input.rgfwIsKeyPressed;
+pub const rgfwIsKeyReleased = input.rgfwIsKeyReleased;
+pub const rgfwIsMouseDown = input.rgfwIsMouseDown;
 pub const rgfwIsMousePressed = input.rgfwIsMousePressed;
 pub const rgfwIsMouseReleased = input.rgfwIsMouseReleased;
-pub const rgfwIsPressed = input.rgfwIsPressed;
-pub const rgfwIsReleased = input.rgfwIsReleased;
-pub const rgfwWasMousePressed = input.rgfwWasMousePressed;
-pub const rgfwWasPressed = input.rgfwWasPressed;
 
-pub const RgfwMonitor = monitor.RgfwMonitor;
-pub const RgfwMonitorMode = monitor.RgfwMonitorMode;
 pub const rgfwWindowGetMonitor = monitor.rgfwWindowGetMonitor;
 pub const rgfwWindowScaleToMonitor = monitor.rgfwWindowScaleToMonitor;
 
@@ -93,30 +102,39 @@ pub const rgfwWindowSetUserPtr = rgfw.rgfwWindowSetUserPtr;
 
 pub const RgfwIcon = window_management.RgfwIcon;
 pub const RgfwMouseIcons = window_management.RgfwMouseIcons;
-pub const rgfwCreateWindow = window_management.rgfwCreateWindow;
-pub const rgfwCreateWindowPtr = window_management.rgfwCreateWindowPtr;
-pub const rgfwGetMousePoint = window_management.rgfwGetMousePoint;
-pub const rgfwGetScreenSize = window_management.rgfwGetScreenSize;
-pub const rgfwMoveToMacOsResourceDir = window_management.rgfwMoveToMacOsResourceDir;
-pub const rgfwSetClassName = window_management.rgfwSetClassName;
-pub const rgfwSetXInstName = window_management.rgfwSetXInstName;
+pub const rgfwGetGlobalMouse = window_management.rgfwGetGlobalMouse;
 pub const rgfwWindowAllowsDnd = window_management.rgfwWindowAllowsDnd;
 pub const rgfwWindowBorderless = window_management.rgfwWindowBorderless;
 pub const rgfwWindowCenter = window_management.rgfwWindowCenter;
 pub const rgfwWindowCheckEvent = window_management.rgfwWindowCheckEvent;
 pub const rgfwWindowCheckQueuedEvent = window_management.rgfwWindowCheckQueuedEvent;
 pub const rgfwWindowClose = window_management.rgfwWindowClose;
+pub const rgfwWindowClosePtr = window_management.rgfwWindowClosePtr;
+pub const rgfwWindowDidDataDrop = window_management.rgfwWindowDidDataDrop;
+pub const rgfwWindowDidMouseEnter = window_management.rgfwWindowDidMouseEnter;
+pub const rgfwWindowDidMouseLeave = window_management.rgfwWindowDidMouseLeave;
 pub const rgfwWindowFocus = window_management.rgfwWindowFocus;
-pub const rgfwWindowGetMousePoint = window_management.rgfwWindowGetMousePoint;
+pub const rgfwWindowGetDataDrag = window_management.rgfwWindowGetDataDrag;
+pub const rgfwWindowGetDataDrop = window_management.rgfwWindowGetDataDrop;
+pub const rgfwWindowGetMouse = window_management.rgfwWindowGetMouse;
 pub const rgfwWindowHide = window_management.rgfwWindowHide;
 pub const rgfwWindowHoldMouse = window_management.rgfwWindowHoldMouse;
+pub const rgfwWindowIsDataDragging = window_management.rgfwWindowIsDataDragging;
 pub const rgfwWindowIsFloating = window_management.rgfwWindowIsFloating;
+pub const rgfwWindowIsFullscreen = window_management.rgfwWindowIsFullscreen;
+pub const rgfwWindowIsHoldingMouse = window_management.rgfwWindowIsHoldingMouse;
 pub const rgfwWindowIsHidden = window_management.rgfwWindowIsHidden;
 pub const rgfwWindowIsInFocus = window_management.rgfwWindowIsInFocus;
+pub const rgfwWindowIsKeyDown = window_management.rgfwWindowIsKeyDown;
+pub const rgfwWindowIsKeyPressed = window_management.rgfwWindowIsKeyPressed;
+pub const rgfwWindowIsKeyReleased = window_management.rgfwWindowIsKeyReleased;
 pub const rgfwWindowIsMaximized = window_management.rgfwWindowIsMaximized;
 pub const rgfwWindowIsMinimized = window_management.rgfwWindowIsMinimized;
-pub const rgfwWindowIsMouseHeld = window_management.rgfwWindowIsMouseHeld;
+pub const rgfwWindowIsMouseDown = window_management.rgfwWindowIsMouseDown;
 pub const rgfwWindowIsMouseHidden = window_management.rgfwWindowIsMouseHidden;
+pub const rgfwWindowIsMouseInside = window_management.rgfwWindowIsMouseInside;
+pub const rgfwWindowIsMousePressed = window_management.rgfwWindowIsMousePressed;
+pub const rgfwWindowIsMouseReleased = window_management.rgfwWindowIsMouseReleased;
 pub const rgfwWindowMaximize = window_management.rgfwWindowMaximize;
 pub const rgfwWindowMinimize = window_management.rgfwWindowMinimize;
 pub const rgfwWindowMove = window_management.rgfwWindowMove;
@@ -149,6 +167,10 @@ pub const rgfwWindowUnholdMouse = window_management.rgfwWindowUnholdMouse;
 
 // Root files need to import all files with tests inside of a test block otherwise tests won't run
 test {
+    _ = clipboard;
+    _ = handling;
+    _ = input;
+    _ = monitor;
     _ = rgfw;
     _ = window_management;
 }
