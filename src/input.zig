@@ -64,11 +64,11 @@ pub fn rgfwIsMouseReleased(win: *RgfwWindow, button: RgfwMouseButton) bool {
 
 // MARK: C Functions
 
-extern "rgfw" fn RGFW_getMouseScroll(x: *f32, y: *f32) callconv(.c) bool;
-extern "rgfw" fn RGFW_getMouseVector(x: *f32, y: *f32) callconv(.c) bool;
-extern "rgfw" fn RGFW_isMouseDown(button: RgfwMouseButton) callconv(.c) bool;
-extern "rgfw" fn RGFW_isMousePressed(button: RgfwMouseButton) callconv(.c) bool;
-extern "rgfw" fn RGFW_isMouseReleased(button: RgfwMouseButton) callconv(.c) bool;
-extern "rgfw" fn RGFW_isKeyDown(key: RgfwKey) callconv(.c) bool;
-extern "rgfw" fn RGFW_isKeyPressed(key: RgfwKey) callconv(.c) bool;
-extern "rgfw" fn RGFW_isKeyReleased(key: RgfwKey) callconv(.c) bool;
+extern "c" fn RGFW_getMouseScroll(x: *f32, y: *f32) callconv(.c) bool;
+extern "c" fn RGFW_getMouseVector(x: *f32, y: *f32) callconv(.c) bool;
+extern "c" fn RGFW_isMouseDown(button: RgfwMouseButton) callconv(.c) bool;
+extern "c" fn RGFW_isMousePressed(button: RgfwMouseButton) callconv(.c) bool;
+extern "c" fn RGFW_isMouseReleased(button: RgfwMouseButton) callconv(.c) bool;
+extern "c" fn RGFW_isKeyDown(key: RgfwKey) callconv(.c) bool;
+extern "c" fn RGFW_isKeyPressed(key: RgfwKey) callconv(.c) bool;
+extern "c" fn RGFW_isKeyReleased(key: RgfwKey) callconv(.c) bool;

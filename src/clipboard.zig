@@ -25,6 +25,6 @@ pub fn rgfwWriteClipboard(text: []const u8, text_len: u32) []const u8 {
 
 // MARK: C Functions
 
-extern "rgfw" fn RGFW_readClipboard(size: *usize) callconv(.c) [*c]const u8;
-extern "rgfw" fn RGFW_readClipboardPtr(str: *?[*c]u8, str_capacity: usize) callconv(.c) usize;
-extern "rgfw" fn RGFW_writeClipboard(text: [*c]const u8, text_len: u32) callconv(.c) void;
+extern "c" fn RGFW_readClipboard(size: *usize) callconv(.c) [*c]const u8;
+extern "c" fn RGFW_readClipboardPtr(str: *?[*c]u8, str_capacity: usize) callconv(.c) usize;
+extern "c" fn RGFW_writeClipboard(text: [*c]const u8, text_len: u32) callconv(.c) void;

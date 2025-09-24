@@ -127,5 +127,5 @@ const RgfwDebugFunc = *const fn (debug_type: RgfwDebugType, err: RgfwErrorCode, 
 
 // MARK: C Functions
 
-extern "rgfw" fn RGFW_sendDebugInfo(debug_type: RgfwDebugType, err: RgfwErrorCode, msg: [*c]const u8) callconv(.c) void;
-extern "rgfw" fn RGFW_setDebugCallback(func: RgfwDebugFunc) callconv(.c) void;
+extern "c" fn RGFW_sendDebugInfo(debug_type: RgfwDebugType, err: RgfwErrorCode, msg: [*c]const u8) callconv(.c) void;
+extern "c" fn RGFW_setDebugCallback(func: RgfwDebugFunc) callconv(.c) void;

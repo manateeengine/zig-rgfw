@@ -31,7 +31,7 @@ pub fn init(b: *std.Build, build_config: *const BuildConfig) RgfwLib {
 
     // LibC is required to build RGFW. This is something I'd like to distance myself from in future
     // Manatee development, but RGFW gets me where I need to be for now, so this is fine
-    lib.linkLibC();
+    lib.root_module.link_libc = true;
 
     // Cross-platform configuration
     lib.root_module.addCMacro("RGFW_IMPLEMENTATION", "");
@@ -44,8 +44,8 @@ pub fn init(b: *std.Build, build_config: *const BuildConfig) RgfwLib {
         .windows => {
             lib.root_module.addCMacro("RGFW_WINDOWS", "");
 
-            lib.linkSystemLibrary("winmm");
-            lib.linkSystemLibrary("gdi32");
+            lib.root_module.linkSystemLibrary("winmm", .{});
+            lib.root_module.linkSystemLibrary("gdi32", .{});
         },
         .macos => {
             lib.root_module.addCMacro("RGFW_MACOS", "");
