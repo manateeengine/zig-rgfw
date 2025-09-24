@@ -9,17 +9,23 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: goto-bus-stop/setup-zig@v2
       - run: zig build
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: goto-bus-stop/setup-zig@v2
       - run: zig fmt --check .
   test:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: goto-bus-stop/setup-zig@v2
       - run: zig build test
