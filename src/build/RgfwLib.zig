@@ -33,12 +33,25 @@ pub fn init(b: *std.Build, build_config: *const BuildConfig) RgfwLib {
     // Manatee development, but RGFW gets me where I need to be for now, so this is fine
     lib.linkLibC();
 
+    // Cross-platform configuration
+    lib.root_module.addCMacro("RGFW_IMPLEMENTATION", "");
+    lib.root_module.addCMacro("RGFW_bool", "u8");
+
     // Since RGFW is a single-header, some C Macros have to be set in order to let the compiler
     // know which target we're building for. This has to be done since C doesn't have all of the
     // amazing comptime magic that Zig does (yay for newer tooling!).
     switch (build_config.target.result.os.tag) {
         .windows => {
             lib.root_module.addCMacro("RGFW_WINDOWS", "");
+
+            lib.linkSystemLibrary("winmm");
+            lib.linkSystemLibrary("gdi32");
+        },
+        .macos => {
+            lib.root_module.addCMacro("RGFW_MACOS", "");
+
+            lib.root_module.linkFramework("Cocoa", .{});
+            lib.root_module.linkFramework("IOKit", .{});
         },
         else => {},
     }
