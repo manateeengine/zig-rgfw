@@ -41,17 +41,24 @@ pub fn init(b: *std.Build, build_config: *const BuildConfig) RgfwLib {
     // know which target we're building for. This has to be done since C doesn't have all of the
     // amazing comptime magic that Zig does (yay for newer tooling!).
     switch (build_config.target.result.os.tag) {
-        .windows => {
-            lib.root_module.addCMacro("RGFW_WINDOWS", "");
+        .linux => {
+            lib.root_module.addCMacro("RGFW_X11", "");
 
-            lib.root_module.linkSystemLibrary("winmm", .{});
-            lib.root_module.linkSystemLibrary("gdi32", .{});
+            lib.root_module.linkSystemLibrary("X11", .{});
+            lib.root_module.linkSystemLibrary("GL", .{});
+            lib.root_module.linkSystemLibrary("Xrandr", .{});
         },
         .macos => {
             lib.root_module.addCMacro("RGFW_MACOS", "");
 
             lib.root_module.linkFramework("Cocoa", .{});
             lib.root_module.linkFramework("IOKit", .{});
+        },
+        .windows => {
+            lib.root_module.addCMacro("RGFW_WINDOWS", "");
+
+            lib.root_module.linkSystemLibrary("winmm", .{});
+            lib.root_module.linkSystemLibrary("gdi32", .{});
         },
         else => {},
     }
