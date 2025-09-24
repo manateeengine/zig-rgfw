@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -27,6 +28,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
         with:
