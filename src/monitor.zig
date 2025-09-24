@@ -24,5 +24,5 @@ pub fn rgfwWindowScaleToMonitor(win: *RgfwWindow) void {
 
 // MARK: C Functions
 
-extern "rgfw" fn RGFW_window_getMonitor(win: *RgfwWindow) callconv(.c) RgfwMonitor;
-extern "rgfw" fn RGFW_window_scaleToMonitor(win: *RgfwWindow) callconv(.c) void;
+extern "c" fn RGFW_window_getMonitor(win: *RgfwWindow) callconv(.c) RgfwMonitor;
+extern "c" fn RGFW_window_scaleToMonitor(win: *RgfwWindow) callconv(.c) void;
