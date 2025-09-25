@@ -10,7 +10,7 @@ module: *std.Build.Module,
 
 /// Initializes a new ZigRgfwModule struct with the provided BuildConfig.
 pub fn init(b: *std.Build, build_config: *const BuildConfig) ZigRgfwModule {
-    const module = b.createModule(.{
+    const module = b.addModule("rgfw", .{
         .root_source_file = b.path("src/root.zig"),
         .optimize = build_config.optimize,
         .target = build_config.target,
