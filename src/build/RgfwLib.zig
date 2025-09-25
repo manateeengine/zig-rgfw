@@ -29,6 +29,14 @@ pub fn init(b: *std.Build, build_config: *const BuildConfig) RgfwLib {
         .root_module = rgfw_lib_module,
     });
 
+    // We're pulling in RGFW as a Zig dependency even though it's not written in Zig. This is due
+    // to the fact that Zig dependencies can't have submodules (lame)
+    const rgfw_dependency = b.dependency("rgfw", .{
+        .optimize = build_config.optimize,
+        .target = build_config.target,
+    });
+    lib.addIncludePath(rgfw_dependency.path(""));
+
     // LibC is required to build RGFW. This is something I'd like to distance myself from in future
     // Manatee development, but RGFW gets me where I need to be for now, so this is fine
     lib.root_module.link_libc = true;
@@ -70,7 +78,6 @@ pub fn init(b: *std.Build, build_config: *const BuildConfig) RgfwLib {
     // Zig has an open issue where header-only C libraries like RGFW can't be added to a module
     // without a C file. Once this is fixed, we shouldn't have to create a C file and should be
     // able to import the header only and be good to go!
-    lib.addIncludePath(.{ .cwd_relative = "./submodules/rgfw" });
     lib.addCSourceFile(.{
         .file = b.addWriteFiles().add("rgfw.c", "#include <RGFW.h>"),
     });
