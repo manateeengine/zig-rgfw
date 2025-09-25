@@ -22,7 +22,6 @@ pub fn init(b: *std.Build, config: *const BuildConfig, module: *const ZigRgfwMod
         .name = "tests",
         .root_module = tests_module,
     });
-    tests.linkSystemLibrary("objc");
 
     return TestsExe{
         .tests = tests,
