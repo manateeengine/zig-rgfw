@@ -1,0 +1,14 @@
+.{
+    .name = .rgfw,
+    .fingerprint = 0x502c4210e0d3063a,
+    .version = "0.1.0",
+    .minimum_zig_version = "0.15.1",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "examples",
+        "LICENSE",
+        "README.md",
+        "src",
+    },
+}
