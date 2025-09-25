@@ -2,6 +2,12 @@
     .name = .rgfw,
     .fingerprint = 0x502c4210e0d3063a,
     .version = "0.1.0",
+    .dependencies = .{
+        .rgfw = .{
+            .url = "git+https://github.com/ColleagueRiley/RGFW.git#d19886cf9ff17e5f11de6df1a0f0a84a7c2db39d",
+            .hash = "N-V-__8AAH9sPQANXocQzWSTAMZeQXKSQs50WCEe0YPz2vWB",
+        },
+    },
     .minimum_zig_version = "0.15.1",
     .paths = .{
         ".gitmodules",
